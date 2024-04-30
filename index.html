@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Since</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        #timer {
+            font-size: 24px;
+			      margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <p id="timer"></p>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const dateString = urlParams.get('date');
+
+            if (dateString) {
+                const targetDate = new Date(dateString);
+                setInterval(updateTimer, 1000);
+
+                function updateTimer() {
+                    const currentDate = new Date();
+                    const timeDifference = currentDate - targetDate;
+
+                    let seconds = Math.floor((timeDifference / 1000) % 60);
+                    let minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+                    let hours = Math.floor((timeDifference / (1000 * 60 * 60)));
+                    let totalHours = Math.floor(timeDifference / (1000 * 60 * 60));
+
+                    hours = hours % 24;
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    hours = hours < 10 ? '0' + hours : hours;
+					
+                    document.getElementById('timer').innerText = `${totalHours} hrs ${minutes} mins ${seconds} secs`;
+                }
+            } else {
+                document.getElementById('timer').innerText = "No date provided in the URL.";
+            }
+        });
+    </script>
+</body>
+</html>
