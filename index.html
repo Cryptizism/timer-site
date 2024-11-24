@@ -36,10 +36,10 @@
                     const currentDate = new Date();
                     const timeDifference = currentDate - targetDate;
 
-                    let seconds = Math.floor((timeDifference / 1000) % 60);
-                    let minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
-                    let hours = Math.floor((timeDifference / (1000 * 60 * 60)));
-                    let totalHours = Math.floor(timeDifference / (1000 * 60 * 60));
+                    let seconds = Math.abs(Math.floor((timeDifference / 1000) % 60)));
+                    let minutes = Math.abs(Math.floor((timeDifference / (1000 * 60)) % 60));
+                    let hours = Math.abs(Math.floor((timeDifference / (1000 * 60 * 60))));
+                    let totalHours = Math.abs(Math.floor(timeDifference / (1000 * 60 * 60)));
 
                     hours = hours % 24;
                     minutes = minutes < 10 ? '0' + minutes : minutes;
